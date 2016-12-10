@@ -1,0 +1,117 @@
+body {
+    background-image: url(/images/background2.png);
+    background-color: #000000;
+}
+h2 {
+    font-family: 'Brush Script MT', cursive;
+	font-size: 40px;
+    text-align: center;
+}
+a {
+    text-decoration:overline;
+}
+
+#slider {
+width: 1100px;
+margin: 0 auto; 
+position: relative;
+}
+#slides {
+padding: 5px;
+box-shadow:5px 5px 7px #333, inset 2px 2px 1px #ddd;
+ -webkit-box-shadow:2px 2px 4px #333, inset 1px 1px 0 #ddd;
+     -moz-box-shadow:2px 2px 4px #333, inset 1px 1px 0 #ddd;
+       -o-box-shadow:2px 2px 4px #333, inset 1px 1px 0 #ddd;
+      -ms-box-shadow:2px 2px 4px #333, inset 1px 1px 0 #ddd;
+border-radius: 5px;
+ -webkit-bolder-radius: 5px;
+ -moz-border-radius: 5px;
+background: #fff;
+}
+.inner {width: 500%;}
+.inner:after {
+	content:'';
+	display: block;
+	height: 0;
+	clear:both;
+	}
+.page {float: left; width: 20%;}
+.page img {width:1100px; height: 570px;}
+
+#overflow {overflow: hidden;}
+#slider input {display: none;}
+
+#controls {
+position: absolute;
+width:100%;
+top: 250px;
+left: 0;
+height: 50px;
+}
+
+#controls label {
+display: none;
+opacity: 0.3;
+cursor: pointer;
+}
+#controls label:hover {
+opacity: 0.8;
+}
+#slide1:checked ~ #controls label:nth-child(2),
+#slide2:checked ~ #controls label:nth-child(3),
+#slide3:checked ~ #controls label:nth-child(1) {
+width: 0;
+height: 0;
+border-top: 20px solid transparent;
+border-left: 20px solid #333;
+border-bottom: 20px solid transparent;
+float: right; 
+margin-right:-30px;
+display: block;
+}
+#slide1:checked ~ #controls label:nth-child(3),
+#slide2:checked ~ #controls label:nth-child(1),
+#slide3:checked ~ #controls label:nth-child(2){
+/*стрелка слева*/
+	width: 0;
+	height: 0;
+	border-top: 20px solid transparent;
+	border-bottom: 20px solid transparent;
+    border-right: 20px solid  rgb(51, 51, 51);
+    float: left;	
+	display: block;
+    margin-left: -27px;
+	}
+
+#slide1:checked ~ #slides .inner { margin-left:0;} 
+#slide2:checked ~ #slides .inner { margin-left:-100%;} 
+#slide3:checked ~ #slides .inner { margin-left:-200%;} 
+
+#active {
+text-align: center;
+margin-top: 10px;
+}
+#active label {
+width: 15px;
+height:10px;
+background-color: #ccc;
+display: inline-block;
+cursor: pointer;
+border-radius: 2px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	}
+#active label:hover {
+    background: #999;
+}
+#slide1:checked ~ #active label:nth-child(1),
+#slide2:checked ~ #active label:nth-child(2),
+#slide3:checked ~ #active label:nth-child(3) { background: #333;}
+
+#slides .inner {
+transition: all 0.8s ease-in-out;
+-webkit-transition: all 0.8s ease-in-out;
+-moz-transition: all 0.8s ease-in-out;
+-ms-transition: all 0.8s ease-in-out;
+-o-transition: all 0.8s ease-in-out;
+}
