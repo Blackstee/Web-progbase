@@ -1,33 +1,65 @@
-"use strict";
+"use strict"
 const net = require('net');
-const sget = require('sget');
-
-const IP = sget("IP: ");
-const PORT = sget("Port: ");
-
 const stdin = process.openStdin();
-const client = net.connect(parseInt(PORT, 10), IP.trim(), () => {
-  // 'connect' listener
-  console.log('connected to server!');
-  client.write('Hello world!\r\n');  // send data to server
-});
-// receive data from server
-client.on('data', (data) => {
-  console.log("Server said: " + data.toString());
-});
-// when client disconnected
-client.on('end', () => {
-  console.log('disconnected from server');
-  stdin.removeListener('data', stdinDataListener);  // unsubscribe
-  stdin.destroy();  // close stdin
-});
-const stdinDataListener = function(data) {
-    let str = data.toString().trim();
-    console.log("You entered: " + str);
-    if (str === "exit") {
-            client.end();  // disconnect client from server
-    } else {
-            client.write(str);  // send input string to server
-    }
+
+const connectionOptions = {
+  host: 'localhost',
+  port: 0
 };
-stdin.addListener('data', stdinDataListener);
+
+let client;
+
+console.log('Enter port to connect:');
+
+const stdinDataListenerNotConnected = (data) => {
+  const port = data.toString().trim();
+
+  if (port < 0 || port > 65535) {
+    console.log('Error: port should be >= 0 and < 65536');
+    console.log('Enter port to connect again:');
+    return;
+  }
+
+  connectionOptions.port = parseInt(port);
+
+  client = net.connect(connectionOptions, () => {
+    console.log('connected to server!');
+    stdin.removeListener('data', stdinDataListenerNotConnected);
+    stdin.addListener('data', stdinDataListenerConnected);
+    client.write('Hello world!\r\n');
+  });
+
+  client.on('data', (data) => {
+    console.log('Server: ' + data.toString());
+  });
+
+  client.on('error', (error) => {
+    console.log('Error: ' + error.message);
+    console.log('Enter port of server: ');
+  });
+
+  client.on('end', () => {
+    console.log('disconnected from server');
+    stdin.removeListener('data', stdinDataListenerConnected);
+    stdin.addListener('data', stdinDataListenerNotConnected);
+    console.log('Enter port of server: ');
+  });
+}
+
+stdin.addListener('data', stdinDataListenerNotConnected);
+
+const stdinDataListenerConnected = (data) => {
+  const str = data.toString().trim();
+  console.log('You entered: ' + str);
+  if (str === 'exit') {
+    client.end();
+  } else if (str === 'help') {
+    console.log('cakes - show all cakes\n\n' +
+                'size - show size of json object\n\n' +
+                'clients - show all clients connected to the server\n\n' +
+                'FindCakeBy attribute value - find cat by given value of attribute\n\n' +
+                'exit - close connection');
+  } else {
+    client.write(str);
+  }
+}

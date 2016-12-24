@@ -1,69 +1,87 @@
-/*var net = require('net');
-const sget = require('sget');
-const PORT = sget("Port: ");
-*/
-var jsonfile  = require ('jsonfile');
+'use strict'
+const net = require('net');
+const fs = require('fs-extra');
+const cakes = fs.readJsonSync('./cakes.json');
+const clients = []
 
-var file = 'objects.json'
+const server = net.createServer((connection) => {
+  console.log('client %s:%s connected', connection.remoteAddress,
+    connection.remotePort);
+  clients.push(connection);
 
-jsonfile.readFile (file, function(err, obj){
-    console.dir(obj);
-})
+  connection.on('data', (data) => {
+    const req = String(data).split(' ');
 
-jsonfile.
-//data = '[{"name": "BLAfbg", "age":"12"},{"name":"hfgkrb", "age":"64"}]'
-/*var server = net.createServer(function(connection) {
-   console.log('client %s:%s connected', connection.remoteAddress, connection.remotePort);
+    if (req.length === 1) {
+      switch (req[0]) {
+        case 'cakes':
+          connection.write(JSON.stringify(cakes['cakes'], null, 4));
+          console.log(JSON.stringify(cakes['cakes'], null, 4));
+          break;
+        case 'size':
+          connection.write(cakes['cakes'].length.toString());
+          console.log(cakes['cakes'].length.toString());
+          break;
+        case 'clients':
+          clients.forEach((client, i, arr) => {
+            connection.write(`client #${i}: ${client.remoteAddress}:
+              ${client.remotePort}`);
+            console.log(`client #${i}: ${client.remoteAddress}:
+              ${client.remotePort}`);
+          });
+          break;
+        default:
+          connection.write('Client entered');
+          console.log('Client entered');
+      }
+    }
+    if (req.length === 3){
+      if (req[0] === 'FindCakeBy'){
+        let value;
+        const filter = req[1];
 
-   // https://nodejs.org/api/net.html#net_event_data
-   connection.on("data", data => {
-          // receive message from client
-          console.log("Client said : " + String(data));
-          connection.write('On data response!\r\n');  // send message to client
-   });
+        if (filter === 'rating' || filter === 'weight') {
+          value = parseInt(req[2]);
+        } else {
+          value = req[2];
+        }
 
-   connection.on('end', function() {
-          console.log('client disconnected');
-   });
+        const result = [];
+        for (let i = 0; i < cakes['cakes'].length; ++i) {
+          if (cakes['cakes'][i][filter] === value) {
+            result.push(cakes['cakes'][i]);
+          }
+        }
+        if (result.length === 0) {
+          connection.write('There is no cake with such options');
+          console.log('There is no cake with such options');
+        } else {
+          result.forEach((cake, i ,arr) => {
+            connection.write(JSON.stringify(cake, null, 4));
+            console.log(JSON.stringify(cake, null, 4));
+          });
+        }
+      } else {
+         connection.write('There is no such command.');
+         console.log('There is no such command.');
+      }
+    }
+    console.log(req);
+  });
 
-   connection.write('Hello World!\r\n');  // send message to client
+  connection.on('end', () => {
+    const index = clients.indexOf(connection);
+    if (index !== -1) {
+      clients.splice(index, 1);
+    }
+    console.log('client disconnected');
+  });
 
-   connection.pipe(connection);
+  connection.write('Hello World!\r\n');
+
+  connection.pipe(connection);
 });
-server.listen(parseInt(PORT, 10), function() {
-  console.log('server is listening');
+
+server.listen(8080, function() {
+  console.log('server is listening on port 8080');
 });
-*/
-/*var mydata = JSON.parse(data);
- console.log(data[4].name);
- console.log(data[4].surname);
- console.log(data[2].name);
- console.log(data[1].surname);
-
-
-const data = require ('/Users/blackstee/Documents/Web-прога/webprogbase/labs/lab1/objects.json');
-
-var mydata = JSON.parse(data);
- console.log(mydata[4].name);
- console.log(mydata[4].surname);
- console.log(mydata[2].name);
- console.log(mydata[1].surname);
-
-var file = require ("objects.json");
-var json = file.getJSON("objects.json", function(json) {
-    console.log(json); // this will show the info it in firebug console
-});
-//const readline = require('readline');
-
-
-/*const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout
-});
-*/
-
-
-/*rl.question('это та неконтролируемая штука', (answer) => {
-  console.log('Ответ:', answer);
-  rl.close();
-});*/

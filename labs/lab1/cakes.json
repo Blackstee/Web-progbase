@@ -1,0 +1,63 @@
+{
+	"cakes": [{
+			"name": "Great cake",
+			"color": "white",
+			"rating": 4,
+			"weight": 5.9,
+			"holiday":	"2016-01-10"
+		},{
+			"name": "Tasty cake",
+			"color": "red",
+			"rating": 4,
+			"weight": 2.4,
+			"holiday":	"2016-06-20"
+		},{
+			"name": "New cake",
+			"color": "pink",
+	    	"rating": 5,
+			"weight": 2.3,
+			"holiday":	"2016-08-08"
+		},{
+			"name": "Big cake",
+			"color": "white",
+		    "rating": 3,
+			"weight": 5.6,
+			"holiday":	"2016-02-12"
+		},{
+			"name": "Little cake",
+			"color": "green",
+			"rating": 4,
+			"weight": 2.1,
+			"holiday":	"2015-01-27"
+		},{
+			"name": "Red cake",
+			"color": "red",
+			"rating": 4,
+			"weight": 3.4,
+			"holiday":	"2016-06-22"
+		},{
+			"name": "White cake",
+			"color": "white",
+			"rating": 4,
+			"weight": 7.1,
+			"holiday":	"2016-02-01"
+		},{
+			"name": "Sweet cake",
+			"color": "black",
+			"rating": 3,
+			"weight": 3.6,
+			"holiday":	"2016-08-09"
+		},{
+			"name": "My cake",
+			"color": "pink",
+			"rating": 3,
+			"weight": 4.2,
+			"holiday":	"2016-05-20"
+		},{
+			"name": "The best cake",
+			"color": "black",
+			"rating": 5,
+			"weight": 6.1,
+			"holiday":	"2016-09-08"
+		}]
+}
