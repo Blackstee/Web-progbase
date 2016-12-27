@@ -1,0 +1,83 @@
+{
+	"cakes": [{
+		   "id" : 0,
+			"name": "Great cake",
+			"color": "pink",
+			"rating": 4,
+			"weight": 5.9,
+			"holiday":	"2016-01-10",
+			"img" : "http://bestfriendsforfrosting.com/wp-content/uploads/2012/05/fluffy-strawberry-vanilla-cupcakes-545x363-custom.jpg"
+		},{
+			 "id" : 1,
+			"name": "Tasty cake",
+			"color": "red",
+			"rating": 4,
+			"weight": 2.4,
+			"holiday":	"2016-06-20",
+			"img" : "http://eat-drink-love.com/wp-content/uploads/2013/02/Red-Velvet-Pancakes-3-mark.jpg"
+		},{
+			 "id" : 2,
+			"name": "New cake",
+			"color": "pink",
+	    	"rating": 5,
+			"weight": 2.3,
+			"holiday":	"2016-08-08",
+			"img" : "http://shk-images.s3.amazonaws.com/wp-content/uploads/2010/05/Power-Puff-Pancakes-017-SHK.jpg"
+		},{
+			 "id" : 3,
+			"name": "Big cake",
+			"color": "white",
+		    "rating": 3,
+			"weight": 5.6,
+			"holiday":	"2016-02-12",
+			"img" : "http://fuza.ru/uploads/posts/2011-11/1322421679_1-photo.jpg"
+		},{
+			 "id" : 4,
+			"name": "Little cake",
+			"color": "green",
+			"rating": 4,
+			"weight": 2.1,
+			"holiday":	"2015-01-27",
+			"img" : "http://img-cdn.herbeauty.co/wp-content/uploads/2015/03/10.-Green-Pancakes.jpg"
+		},{
+			 "id" : 5,
+			"name": "Red cake",
+			"color": "red",
+			"rating": 4,
+			"weight": 3.4,
+			"holiday":	"2016-06-22",
+			"img" : "http://eclecticeveryday.com/wp-content/uploads/2013/06/red-white-blue-2.jpg"
+		},{
+			 "id" : 6,
+			"name": "White cake",
+			"color": "white",
+			"rating": 4,
+			"weight": 7.1,
+			"holiday":	"2016-02-01",
+			"img" : "http://avivas.ru/img/news/201110/25338257318.jpg"
+		},{
+			 "id" : 7,
+			"name": "Sweet cake",
+			"color": "black",
+			"rating": 3,
+			"weight": 3.6,
+			"holiday":	"2016-08-09",
+			"img" : "http://2.bp.blogspot.com/-AIhySgQAUSo/UAXSKJemrQI/AAAAAAAAO-c/v9zbgQu6V0k/s800/Black%2BForest%2BPancakes%2B500%2B4511.jpg"
+		},{
+			 "id" : 8,
+			"name": "My cake",
+			"color": "pink",
+			"rating": 3,
+			"weight": 4.2,
+			"holiday":	"2016-05-20",
+			"img" : "http://i.artfile.ru/2880x1800_1016321_[www.ArtFile.ru].jpg"
+		},{
+			 "id" : 9,
+			"name": "The best cake",
+			"color": "black",
+			"rating": 5,
+			"weight": 6.1,
+			"holiday":	"2016-09-08",
+			"img" : "http://www.dietsinreview.com/images/cache/450x300_vegan-pancakes.jpg"
+		}]
+}

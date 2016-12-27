@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" href="/stylesheets/styles.css" />
+    <script src="js/slide_bar.js"></script>
+	<title>  Cakes &#10084 </title>
+    <link rel="shortcut icon" href="/images/icon2.ico" />
+</head>
+<body >
+    <h1><a href = "/">HOME</a></h1>
+<div id="list8">
+<ul>
+	<% cakes.forEach((cake, i, arr) => { %>
+	<li>
+			 <a href="/cakes/<%= cake['id'] %>"><img src=<%= cake['img'] %> align = "center" width = 200px height = 120 px /> <%= cake['name'] %> and it's color is : <%= cake['color'] %> </a></li>
+		 <% }); %>
+</ul>
+</div>
+</body>
+</html>
