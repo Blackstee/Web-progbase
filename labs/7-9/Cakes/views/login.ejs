@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet"  href="/stylesheets/menu.css"/>
+    <link rel="stylesheet"  href="/stylesheets/register.css"/>
+		<link rel="stylesheet" href="/stylesheets/breeds.css"/>
+	<script src="js/slide_bar.js"></script>
+	<title>  Cakes </title>
+    <link rel="shortcut icon" href="/images/icon.ico" />
+</head>
+<body >
+	<div id="containers">
+	<nav>
+			<ul>
+					<li><a href="/hello">HELLO PAGE</a></li>
+					<li><a href="/cakes">CAKES</a>
+					<li><a href="/">INFORMATION</a></li>
+					<% if (user) { %>
+					<li><a href="/logout">LOG OUT</a></li>
+					<% } else { %>
+				<li><a href="/login">LOG IN</a></li>
+					<% } %>
+
+			</ul>
+	</nav>
+</div>
+
+
+    <div id="login">
+        <form action="/login" method="POST">
+            <fieldset class="clearfix">
+                <p><span class="fontawesome-user"></span><input type="text" name= "username" value="username" onBlur="if(this.value == '') this.value = 'username'" onFocus="if(this.value == 'username') this.value = ''" required></p>
+                <p><span class="fontawesome-lock"></span><input type="password" name="password" value="pass" onBlur="if(this.value == '') this.value = 'pass'" onFocus="if(this.value == 'pass') this.value = ''" required></p>
+                <p><input type="submit" value="LOG IN"></p>
+            </fieldset>
+        </form>
+        <p>No account? &nbsp;&nbsp;<a href="/register">Registration</a></p>
+    </div>
+		<footer> <h1><% if (user) { %>
+		YOU ARE <%= user.username %>
+		<% } %></h1>
+				</footer>
+
+</body>
+</html>

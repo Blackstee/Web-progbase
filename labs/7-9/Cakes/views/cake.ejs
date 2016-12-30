@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" href="/stylesheets/breeds.css"/>
+    <link rel="stylesheet"  href="/stylesheets/menu.css" />
+	<title>  CatDog </title>
+    <link rel="shortcut icon" href="/images/icon.ico" />
+</head>
+<body >
+	<div id="containers">
+	<nav>
+			<ul>
+					<li><a href="/hello">HELLO PAGE</a></li>
+					<li><a href="/cakes">CAKES</a>
+					<li><a href="/">INFORMATION</a></li>
+					<% if (user) { %>
+					<li><a href="/logout">LOG OUT</a></li>
+					<% } else { %>
+				<li><a href="/login">LOG IN</a></li>
+					<% } %>
+
+			</ul>
+	</nav>
+</div>
+<% { %>
+<div class="container">
+  <div class="card u-clearfix">
+    <div class="card-media">
+      <img src='data:image/jpg;base64,<%= post.image %>' class="card-media-img" />
+    </div>
+    <div class="card-body">
+      <h2 class="card-body-heading"><%= post.title %></h2>
+        <br>
+				<h3 class="card-body-desc"><%= post.description%></h3>
+				<br><br>
+		<br><br>
+		<% if (user) { %>
+			<form action = "/cakes/deletepost" method = "POST">
+				<input type = "hidden" name = "todelete" value = <%= post._id %> >
+				<p><input type="submit" value="DELETE"></p>
+			</form>
+<!-- <a href="/cakes/deletepost/<%= post._id %>" class="card-button card-button-cto">
+DELETE POST</a> -->
+<% } %>
+    </div>
+  </div>
+	<% }  %>
+</div>
+<footer> <h1><% if (user) { %>
+YOU ARE <%= user.username %>
+<% } %></h1>
+		</footer>
+</body>
+</html>

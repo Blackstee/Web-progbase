@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <link rel="stylesheet"  href="/stylesheets/menu.css"/>
+		<link rel="stylesheet" href="/stylesheets/breeds.css"/>
+	<title>  Cakes </title>
+    <link rel="shortcut icon" href="/public/images/icon2.ico" />
+</head>
+<body >
+	<div id="containers">
+	<nav>
+			<ul>
+					<li><a href="/hello">HELLO PAGE</a></li>
+					<li><a href="/cakes">CAKES</a>
+					<li><a href="/">INFORMATION</a></li>
+					<% if (user) { %>
+					<li><a href="/logout">LOG OUT</a></li>
+					<% } else { %>
+				<li><a href="/login">LOG IN</a></li>
+					<% } %>
+
+			</ul>
+	</nav>
+</div>
+
+<!-- <h1><img src = "images/desert.jpg"  width = 900px height = 500px class = "picture"/></h1> -->
+<h1><% if (user && user.status == "admin") { %>
+Hello, admin!<br>
+<a href="/users">Go to list of users</a>
+<% } %></h1>
+				<footer> <h1><% if (user) { %>
+				YOU ARE <%= user.username %>
+				<% } %></h1>
+		        </footer>
+</body>
+</html>

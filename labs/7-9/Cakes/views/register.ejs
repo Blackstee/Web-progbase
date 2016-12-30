@@ -1,0 +1,137 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <link rel="stylesheet"  href="/stylesheets/menu.css"/>
+    <link rel="stylesheet"  href="/stylesheets/register.css"/>
+	<script src="js/slide_bar.js"></script>
+	<title>  Cakes </title>
+    <link rel="shortcut icon" href="/images/icon.ico" />
+</head>
+<body >
+	<div id="containers">
+	<nav>
+			<ul>
+					<li><a href="/hello">HELLO PAGE</a></li>
+					<li><a href="/cakes">CAKES</a>
+					<li><a href="/">INFORMATION</a></li>
+					<% if (user) { %>
+					<li><a href="/logout">LOG OUT</a></li>
+					<% } else { %>
+				<li><a href="/login">LOG IN</a></li>
+					<% } %>
+
+			</ul>
+	</nav>
+	</div>
+
+    <div id="login">
+        <form form action='/register' method='POST' id = "reg_form">
+            <fieldset class="clearfix">
+                <p><span class="fontawesome-user"></span><input type="text" name="username"  value="username" onBlur="if(this.value == '') this.value = 'username'" onFocus="if(this.value == 'username') this.value = ''" required><h1 id = "reg1" ></h1></p>
+                <p><span class="fontawesome-user"></span><input type="text" name="firstname" value="firstname" onBlur="if(this.value == '') this.value = 'firstname'" onFocus="if(this.value == 'firstname') this.value = ''" required><h1 id = "reg2" ></h1></p>
+								<p><span class="fontawesome-user"></span><input type="text" name="lastname" value="lastname" onBlur="if(this.value == '') this.value = 'lastname'" onFocus="if(this.value == 'lastname') this.value = ''" required><h1 id = "reg3" ></h1></p>
+								<p><span class="fontawesome-lock"></span><input type="password"  name="pass" value="pass" onBlur="if(this.value == '') this.value = 'pass'" onFocus="if(this.value == 'pass') this.value = ''" required ><h1 id = "reg4" ></h1></p>
+								<p><span class="fontawesome-lock"></span><input type="password"  name="pass2" value="pass2" onBlur="if(this.value == '') this.value = 'pass2'" onFocus="if(this.value == 'pass2') this.value = ''" required><h1 id = "reg5" ></h1></p>
+                <p><input id = "reg" type="submit" value="REGISTER"></p>
+            </fieldset>
+        </form>
+        <p>Already have account? &nbsp;&nbsp;<a href="/login">LOG IN</a><span class="fontawesome-arrow-right"></span></p>
+    </div>
+
+		<footer> <h1><% if (user) { %>
+		YOU ARE <%= user.username %>
+		<% } %></h1>
+				</footer>
+
+
+	 <script src =  "jquery.js"></script>
+
+		 <script>
+		$(document).ready(function(){
+			$("#reg_form")on('click', "#reg", function(){
+				var flag = true;
+				if ($("#reg_form input[name = 'firstname']").val() == ""){
+					$("#reg2").text("empty field");
+					flag = false;
+				} else
+				if ($("#reg_form input[name = 'firstname']").val().length < 2){
+					$("#reg2").text("Too short first name");
+					flag = false;
+				} else {
+					$("#reg2").text("");
+				}
+				if ($("#reg_form input[name = 'lastname']").val() == ""){
+					$("#reg3").text("empty field");
+					flag = false;
+				} else
+				if ($("#reg_form input[name = 'lastname']").val().length < 2){
+					$("#reg3").text("Too short last name");
+					flag = false;
+				} else{
+					$("#reg3").text("");
+				}
+				if ($("#reg_form input[name = 'username']").val() == ""){
+					$("#reg1").text("empty field");
+					flag = false;
+				} else
+				if ($("#reg_form input[name = 'username']").val().length < 2){
+					$("#reg1").text("Too short username");
+					flag = false;
+				} else{
+					$("#reg1").text("");
+				}
+				if ($("#reg_form input[name = 'pass']").val() == ""){
+					$("#reg4").text("empty field");
+					flag = false;
+				} else
+				if ($("#reg_form input[name = 'pass2']").val() == ""){
+					$("#reg5").text("empty field");
+					flag = false;
+				} else
+				if ($("#reg_form input[name = 'pass']").val().length < 2){
+					$("#reg4").text("Too short password");
+					flag = false;
+				} else
+				{
+					$("#reg4").text("");
+				}
+				if ($("#reg_form input[name = 'pass']").val() != $("#reg_form input[name = 'pass2']").val()){
+					$("#reg5").text("Different passwords");
+					flag = false;
+				} else{
+					$("#reg5").text("");
+				}
+				if (flag){
+					var formData = {};
+					formData.username = $("#reg_form input[name = 'username']").val();
+					formData.firstname = $("#reg_form input[name = 'firstname']").val();
+					formData.lastname = $("#reg_form input[name = 'lastname']").val();
+					formData.pass = $("#reg_form input[name = 'pass']").val();
+					formData.pass2 = $("#reg_form input[name = 'pass2']").val();
+					function success (data, status){
+						console.log(data);
+						if (data.success){
+							alert ("Congrulations!");
+							location.reload();
+						}
+					}
+					function err (data, status){
+						console.log (data);
+						$("#reg1").text("Such username exists");
+					}
+					$.ajax({
+						type: "POST",
+						url :"/register",
+						data : formData,
+						success : success,
+						error : err,
+					})
+				}
+			})
+		})
+		 </script>
+
+</body>
+</html>

@@ -1,0 +1,54 @@
+body {
+    background-image: url(images/background.png);
+}
+
+.leftimg  {
+    float: left; 
+    margin: 10px 30px 20px 20px; 
+   }
+h1 {
+    font-family: 'Brush Script MT', cursive;
+	font-size: 35px;
+    text-align: center;
+}
+h2 {
+    font-family:Georgia,serif,Times; 
+    font-size:30px;
+    text-align: justify;
+    background: #ffffff;
+    color: #000000;
+    padding: 3px;
+}
+a {
+    text-decoration: overline;
+}
+
+#list8 {
+}
+#list8 ul { 
+    list-style:none;
+}
+#list8 ul li { 
+    font-family:Georgia,serif,Times; 
+    font-size:25px;
+    white-space: pre;
+}
+#list8 ul li a {
+    display:block; 
+    width:1100px; 
+    height:140px;
+    background-color:#ffffff; 
+    border-left:5px solid #191970;
+    border-right:5px solid #191970; 
+    padding-left:5px;
+    text-decoration:none; 
+    color:#000000; 
+}
+#list8 ul li a:hover { 
+    -moz-transform:rotate(-2deg);
+    -moz-box-shadow:5px 5px 10px 5px #000000;
+    -webkit-transform:rotate(-2deg); 
+    -webkit-box-shadow:5px 5px 10px 5px #000000;
+transform:
+    rotate(-2deg);
+    box-shadow:5px 5px 10px 5px #000000; }

@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script type="text/javascript" src="/javascripts/jquery.simplePagination.js"></script>
+    <link rel="stylesheet"  href="/stylesheets/menu.css"/>
+		<link rel="stylesheet"  href="/stylesheets/breeds.css"/>
+
+	<title>  CatDog </title>
+    <link rel="shortcut icon" href="/public/images/icon.ico" />
+</head>
+<body >
+	<div id="containers">
+	<nav>
+			<ul>
+					<li><a href="/hello">HELLO PAGE</a></li>
+					<li><a href="/cakes">CAKES</a>
+					<li><a href="/">INFORMATION</a></li>
+					<% if (user) { %>
+					<li><a href="/logout">LOG OUT</a></li>
+					<% } else { %>
+				<li><a href="/login">LOG IN</a></li>
+					<% } %>
+
+			</ul>
+	</nav>
+</div>
+
+
+      <h1>Users</h1>
+		<%  {users.filter(x => x.username).forEach( justuser => { %>
+		<div class="container">
+		  <div class="card u-clearfix">
+		    <div class="card-body">
+		      <h2 class="card-body-heading"><%= justuser.username %></h2>
+				<br><br>
+				<a href="/users/deleteuser/<%= justuser._id %>" class="card-button card-button-cto">
+			DELETE USER</a>
+		    </div>
+		  </div>
+			<% }) } %>
+		</div>
+
+   <!-- <div id="light-pagination" class="pagination">
+		<script type='text/javascript'>
+		$(window).load(function(){
+		$('#light-pagination').pagination({
+		    items: 5,
+		    itemsOnPage: 2,
+		    hrefTextPrefix: '',
+		    hrefTextSuffix: '.html',
+		    prevText: 'Пред',
+		    nextText: 'След',
+		    cssStyle: 'light-theme'
+		});
+	});
+</script></div> -->
+				<footer> <h1><% if (user) { %>
+				YOU ARE <%= user.username %>
+				<% } %></h1>
+		        </footer>
+</body>
+</html>
